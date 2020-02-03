@@ -17,3 +17,38 @@
 %   AUTHOR: DAVINA KAM DATE: JANUARY 30, 2020
 %   Patient data and code for mapping to NMI space available at:
 %   https://www.cs.cmu.edu/afs/cs/project/theo-73/www/science2008/data.html
+
+%% Load relevant data
+load('patient1_data.mat')
+%   words: cell array of the 60 words shown to patients in the Jeffrey et. 
+%   al 2008 study
+%   data: rows = words, columns = activation for each voxel.
+%   Each value of data is the activation of a particular voxel when patient 1
+%   sees that word on the screen. 
+%   model_x_values: rows = words, columns = value for one of the 300
+%   dimensions determined by lexvec
+%   Each value o
+%   Example: row 1 in cell array 'words' has the value of 'airplane'. 
+%   Row 1 column 1 in double matrix 'data' corresponds to the activation of
+%   voxel 1 when patient 1 saw the word 'airplane'.
+%   Row 1 column 1 in double matrix 'model_x_values' corresponds to the 
+%   value of dimension 1 for the word 'airplane' as determined by the
+%   lexvec model.
+
+%% Training
+
+%   Model trains on 58 words to predict the fMRI images for the words
+%   hammer and dog
+
+%% Testing
+
+%   Generate predicted activation values for each voxel for the
+%   words hammer and dog
+
+%% Mapping to MNI space
+
+%   Use functions written by Jeffrey et al. 2008 to generate predicted fMRI
+%   image using the voxel activation values previously calculated.
+
+
+
