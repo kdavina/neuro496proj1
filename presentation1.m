@@ -35,15 +35,19 @@ load('patient1_data.mat')
 %   value of dimension 1 for the word 'airplane' as determined by the
 %   lexvec model.
 
-%% Training
-
-%   Model trains on 58 words to predict the fMRI images for the words
-%   hammer and dog
-
-%% Testing
-
-%   Generate predicted activation values for each voxel for the
-%   words hammer and dog
+%% Training and Testing
+num_voxels = length(data(1,:));
+pred_airplane = ones(num_voxels, 1);
+pred_ant = ones(num_voxels,1);
+for voxel_index = 1:num_voxels
+    %   Model trains on 58 words to predict the fMRI images for the first 
+    %   two words, airplane and ant
+    weights = ridge(data(3:60,voxel_index), model_x_values(3:60,:), 100);
+    %   Generate predicted activation values for each voxel for the
+    %   words hammer and dog
+    pred_airplane(voxel_index) = model_x_values(1,:) * weights;
+    pred_ant(voxel_index) = model_x_values(2,:) * weights;
+end
 
 %% Mapping to MNI space
 
