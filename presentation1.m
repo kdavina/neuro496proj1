@@ -20,6 +20,7 @@
 
 %% Load relevant data
 load('patient1_data.mat')
+load('data-science-P1.mat')
 %   words: cell array of the 60 words shown to patients in the Jeffrey et. 
 %   al 2008 study
 %   data: rows = words, columns = activation for each voxel.
@@ -36,23 +37,28 @@ load('patient1_data.mat')
 %   lexvec model.
 
 %% Training and Testing
-num_voxels = length(data(1,:));
+num_voxels = length(matrix_data(1,:));
 pred_airplane = ones(num_voxels, 1);
 pred_ant = ones(num_voxels,1);
 for voxel_index = 1:num_voxels
     %   Model trains on 58 words to predict the fMRI images for the first 
     %   two words, airplane and ant
-    weights = ridge(data(3:60,voxel_index), model_x_values(3:60,:), 100);
+    weights = ridge(matrix_data(3:60,voxel_index), model_x_values(3:60,:), 100);
     %   Generate predicted activation values for each voxel for the
     %   words hammer and dog
     pred_airplane(voxel_index) = model_x_values(1,:) * weights;
     pred_ant(voxel_index) = model_x_values(2,:) * weights;
 end
 
-%% Mapping to MNI space
+%% Mapping to MNI spacce
 
 %   Use functions written by Jeffrey et al. 2008 to generate predicted fMRI
 %   image using the voxel activation values previously calculated.
-
+figure(1)
+plot_brain2d_alt(pred_airplane',meta);
+figure(2)
+plot_brain2d_alt(pred_ant',meta);
+figure(3)
+beep 
 
 
