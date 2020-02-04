@@ -34,7 +34,7 @@
 
 %% Load relevant data
 load('patient1_data.mat')
-load('data-science-P1.mat', 'meta')
+load('patient-1-meta')
 %   words: cell array of the 60 words shown to patients in the Jeffrey et. 
 %   al 2008 study
 
